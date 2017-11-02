@@ -39,7 +39,7 @@ public class ResursiveTest {
         // Test with an empty array
         outTesting.reset();
         rTest.printEveryOther(emptyArray, 2);
-        assertEquals("", outTesting.toString()) ;
+        assertEquals("BAD INPUT", outTesting.toString()) ;
 
         // Additional test with different array
         outTesting.reset();

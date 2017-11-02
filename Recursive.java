@@ -9,22 +9,32 @@ public class Recursive {
     * An example input arrary {1,2,3,4,5,6,7,8,9,10}, called with k=2, should output 9753
     */
     public static void printEveryOther(final int[] ia, final int k) {
-        if (ia == null || k < 0) // Test to see if array is null
+        if (ia == null || k < 0 || ia.length == 0 || k >= ia.length) // Check for conditions that would cause an error
         {
             System.out.print("BAD INPUT");
             return;
         }
-        int arrayPrintBegin = ia.length - 2; // Find where to begin printing, every other element so -2 of length
-        if (ia.length > k && k >= 0) // Make sure ia length is greater than k, and that k isn't 0 so no index errors and recursion check
+        if (k<ia.length-2) // Verify k is still smaller than the last position we want printed
         {
-            System.out.print(ia[arrayPrintBegin]);
-            int[] newIA = new int[arrayPrintBegin]; // Create new array with -2 length
-            for (int i = 0; i < newIA.length; i++) // populate array
-            {
-                newIA[i] = ia[i];
-            }
-            printEveryOther(newIA,k); // recursively call method again.
+            printEveryOther(ia,k +2); // If so, call loop with k incremented by 2, for every other position
         }
+        System.out.print(ia[k]); // End of recursion, print out the numbers
+
+        /* This will print out each number starting from the end of the array-2
+        for ia = {1,2,3,4,5,6,7,8,9,10};
+            k = 2, ia.length - 2 = 8
+            if 2<8
+                ThisMethod(ia,4)
+                if 4<8
+                    ThisMethod(ia,6)
+                    if 6<8
+                        ThisMethod(ia,8)
+                        if8<8
+                        out ia[8]:9
+                    out ia[6]: 7
+                out ia[4]: 5
+            out ia[2]: 3
+         */
     }
 
     /*
